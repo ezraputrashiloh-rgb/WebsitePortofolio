@@ -1,0 +1,31 @@
+{
+  "githubToken": "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",
+  "githubConfig": {
+    "owner": "ezraputrashiloh-rgb",
+    "repo": "WebsitePortofolio",
+    "branch": "main",
+    "dataPath": "db.json"
+  },
+  "creatorEmails": {
+    "creator1": {
+      "name": "Ridho Aulia",
+      "email": "sunaokamishoroko@gmail.com"
+    },
+    "creator2": {
+      "name": "Shiloh Ezra",
+      "email": "ezraputrashiloh@gmail.com"
+    }
+  },
+  "authData": {
+    "ridho": {
+      "id": "creator1",
+      "pass": "ryoyamada",
+      "displayName": "Ridho"
+    },
+    "ezra": {
+      "id": "creator2",
+      "pass": "240311",
+      "displayName": "Ezra"
+    }
+  }
+}
