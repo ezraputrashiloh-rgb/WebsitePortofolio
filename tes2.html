@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusDuo | Kolaborasi & Portofolio</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { extend: { colors: { brand: { 50: '#eef2ff', 600: '#4f46e5' } }, fontFamily: { sans: ['Inter', 'sans-serif'] } } }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.3s ease, color 0.3s ease; }
+        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .dark .glass-card { background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); }
+        .dark .glass-nav { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 antialiased">
+
+    <!-- Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-bold">ND</div>
+                <div>
+                    <span class="text-lg font-bold bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400 bg-clip-text text-transparent">NexusDuo</span>
+                    <span class="block text-xs text-slate-500 dark:text-slate-400">Collaborative Studio</span>
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                 <a href="#hero" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Beranda</a>
+                <a href="#profiles" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Kreator</a>
+                <a href="#dashboard" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Dual Dashboard</a>
+                <a href="#services" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Layanan</a>
+                <a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Kontak</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <!-- Tombol Reset Data Darurat -->
+                <button onclick="resetAllData()" class="px-3 py-2 rounded-xl bg-red-100 dark:bg-red-900/30 text-red-600 text-xs font-bold hover:bg-red-200 transition-all" title="Klik jika aplikasi error">
+                    <i class="fa-solid fa-rotate-right"></i> Reset
+                </button>
+                <button onclick="toggleTheme()" class="p-2.5 rounded-full bg-slate-200 dark:bg-slate-800 hover:ring-2 hover:ring-indigo-500">
+                    <i class="fa-solid fa-moon dark:hidden"></i><i class="fa-solid fa-sun hidden dark:block text-amber-400"></i>
+                </button>
+                <button id="navAuthBtn" onclick="openLoginModal()" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-lg">
+                    <i class="fa-solid fa-right-to-bracket mr-2"></i> Login
+                </button>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-700 dark:text-slate-300">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden px-4 pt-2 pb-6 space-y-3 bg-white/95 dark:bg-slate-900/95 border-b border-slate-200 dark:border-slate-800">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block py-2">Beranda</a>
+            <a href="#dashboard" onclick="toggleMobileMenu()" class="block py-2">Dashboard</a>
+            <button id="navAuthBtnMobile" onclick="openLoginModal(); toggleMobileMenu()" class="w-full text-left py-2 font-bold text-indigo-600">
+                <i class="fa-solid fa-right-to-bracket mr-2"></i> Login Kreator
+            </button>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20 px-4 sm:px-6 lg:px-8">
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 text-xs font-semibold uppercase tracking-wider border border-indigo-200 dark:border-indigo-800">
+                        <span class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></span>
+                        Kolaborasi Kreatif Tanpa Batas
+                    </div>
+            <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Dua Pribadi,<br>Berimpi Sukses <span class="bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">Portofolio Mahakarya Digital</span>
+                    </h1>
+                    <p class="text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0">
+                        Website ini digunakan untuk sarana Portofolio Kami.
+                    </p>
+                </div>
+                <div class="lg:col-span-5">
+                    <div class="glass-card rounded-3xl p-5 shadow-2xl relative group">
+                        <div id="coverContainer" class="relative h-64 sm:h-72 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center">
+                            <img id="coverPreviewImg" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1000&q=80" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent flex items-end p-6">
+                                <div class="text-white"><h3 id="coverTitleText" class="font-bold text-xl">Studio Utama</h3></div>
+                            </div>
+                        </div>
+                        <div id="editCoverWrapper" class="mt-4 flex items-center justify-between hidden">
+                            <span class="text-xs text-slate-500">Ganti Foto Cover:</span>
+                            <button onclick="openCoverModal()" class="px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-600 text-xs font-semibold hover:bg-indigo-100"><i class="fa-solid fa-camera mr-1"></i> Pilih Foto</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profiles Section -->
+        <section id="profiles" class="py-24 px-4 sm:px-6 lg:px-8 bg-slate-100/50 dark:bg-slate-900/30">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-3xl font-extrabold">Profil Kreator</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Creator 1 -->
+                    <div class="glass-card rounded-3xl p-8 shadow-xl">
+                        <div class="flex items-center gap-5 mb-6">
+                            <img id="creator1Img" src="" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-indigo-500/30">
+                            <div>
+                                <h3 id="creator1Name" class="text-2xl font-bold">...</h3>
+                                <p id="creator1Role" class="text-indigo-600 font-semibold text-sm">...</p>
+                            </div>
+                        </div>
+                        <p id="creator1Bio" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">...</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+                            <button id="editProfileBtn1" onclick="openProfileModal('creator1')" class="hidden px-3 py-1.5 rounded-lg bg-indigo-50 text-indigo-600 text-xs font-semibold hover:bg-indigo-100"><i class="fa-solid fa-pen-to-square mr-1"></i> Edit Profil</button>
+                            <button onclick="switchCreatorTab('creator1')" class="px-4 py-2 rounded-xl bg-indigo-50 text-indigo-600 font-semibold text-xs hover:bg-indigo-600 hover:text-white">Lihat Karya</button>
+                        </div>
+                    </div>
+                    <!-- Creator 2 -->
+                    <div class="glass-card rounded-3xl p-8 shadow-xl">
+                        <div class="flex items-center gap-5 mb-6">
+                            <img id="creator2Img" src="" class="w-20 h-20 rounded-2xl object-cover ring-2 ring-violet-500/30">
+                            <div>
+                                <h3 id="creator2Name" class="text-2xl font-bold">...</h3>
+                                <p id="creator2Role" class="text-violet-600 font-semibold text-sm">...</p>
+                            </div>
+                        </div>
+                        <p id="creator2Bio" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-6">...</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
+                            <button id="editProfileBtn2" onclick="openProfileModal('creator2')" class="hidden px-3 py-1.5 rounded-lg bg-violet-50 text-violet-600 text-xs font-semibold hover:bg-violet-100"><i class="fa-solid fa-pen-to-square mr-1"></i> Edit Profil</button>
+                            <button onclick="switchCreatorTab('creator2')" class="px-4 py-2 rounded-xl bg-violet-50 text-violet-600 font-semibold text-xs hover:bg-violet-600 hover:text-white">Lihat Karya</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="mb-10 w-full max-w-6xl mx-auto relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
+                <img id="creatorBanner" src="https://files.catbox.moe/okdy73.jpg" class="w-full h-48 md:h-72 object-cover transition-opacity duration-500">
+            </div>
+
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex p-1.5 rounded-2xl bg-slate-200 dark:bg-slate-800 shadow-inner">
+                    <button id="tabCreator1" onclick="switchCreatorTab('creator1')" class="px-6 py-3 rounded-xl font-semibold text-sm bg-indigo-600 text-white">Portofolio Ridho</button>
+                    <button id="tabCreator2" onclick="switchCreatorTab('creator2')" class="px-6 py-3 rounded-xl font-semibold text-sm text-slate-600">Portofolio Ezra</button>
+                </div>
+            </div>
+
+            <!-- Header & Tombol Pindah Sub-Halaman -->
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-slate-200 dark:border-slate-800">
+                <div class="flex items-center gap-3">
+                    <h3 id="currentDashboardTitle" class="text-xl font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-folder-open text-indigo-600"></i> Karya Alana
+                    </h3>
+                    <span id="projectCountBadge" class="text-xs px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 font-semibold">0 Karya</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <button id="viewGalleryBtn" onclick="switchDashboardView('gallery')" class="px-4 py-2 rounded-xl text-sm font-semibold bg-indigo-600 text-white shadow transition-all">
+                        <i class="fa-solid fa-images mr-1.5"></i> Galeri Karya
+                    </button>
+                    <button id="viewUploadBtn" onclick="switchDashboardView('upload')" class="px-4 py-2 rounded-xl text-sm font-semibold bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 transition-all">
+                        <i class="fa-solid fa-cloud-arrow-up mr-1.5"></i> Upload Karya
+                    </button>
+                </div>
+            </div>
+
+            <!-- SUB-HALAMAN 1: GALERI KARYA -->
+            <div id="galleryView" class="space-y-6">
+                <div id="projectsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+
+            <!-- SUB-HALAMAN 2: HALAMAN UPLOAD / EDIT -->
+            <div id="uploadView" class="hidden max-w-2xl mx-auto">
+                <div id="dashboardAuthNotice" class="text-center py-12 px-6 glass-card rounded-3xl border border-dashed border-slate-300 dark:border-slate-700">
+                    <i class="fa-solid fa-lock text-4xl text-slate-400 mb-4"></i>
+                    <h5 class="font-bold text-slate-700 dark:text-slate-300">Akses Terkunci</h5>
+                    <p class="text-sm text-slate-500 mt-2">Login sebagai kreator terkait untuk menambah/mengedit karya.</p>
+                    <button onclick="openLoginModal()" class="mt-6 px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm">Login Sekarang</button>
+                </div>
+
+                <div id="dashboardFormWrapper" class="hidden glass-card rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-200 dark:border-slate-800">
+                        <h4 id="formPanelTitle" class="font-bold text-lg text-indigo-600">Tambah Karya</h4>
+                        <button type="button" onclick="switchDashboardView('gallery')" class="text-xs font-semibold text-slate-500 hover:text-indigo-600">
+                            <i class="fa-solid fa-arrow-left mr-1"></i> Kembali ke Galeri
+                        </button>
+                    </div>
+                    <form id="portfolioForm" onsubmit="handlePortfolioSubmit(event)" class="space-y-4">
+                        <input type="hidden" id="editProjectId" value="">
+                        <input type="text" id="projectTitle" placeholder="Judul Karya" required class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm">
+                        <input type="file" id="projectFile" accept="image/*,video/*" class="w-full px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-xs">
+                        <textarea id="projectDesc" placeholder="Deskripsi Singkat..." rows="3" required class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm"></textarea>
+                        <input type="text" id="projectNote" placeholder="Catatan Progress..." class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm">
+                        <div class="flex gap-2">
+                            <button type="submit" id="formSubmitBtn" class="flex-1 py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm">Publikasikan</button>
+                            <button type="button" id="formCancelBtn" onclick="cancelEdit()" class="hidden px-4 py-3 rounded-xl bg-slate-200 text-slate-700 font-semibold text-sm">Batal</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Login -->
+    <div id="loginModal" class="fixed inset-0 z-[60] hidden items-center justify-center bg-slate-950/70 backdrop-blur-sm p-4">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-sm w-full shadow-2xl space-y-6">
+            <div class="flex items-center justify-between">
+                <h3 class="text-xl font-bold">Login Kreator</h3>
+                <button type="button" onclick="closeLoginModal()" class="p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div id="loginError" class="hidden text-xs text-red-500 bg-red-100 p-2 rounded-lg font-semibold text-center">Username atau Password salah!</div>
+                <input type="text" id="loginUser" placeholder="Username" required class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 text-sm">
+                <input type="password" id="loginPass" placeholder="Password" required class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 text-sm">
+                <button type="submit" class="w-full py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Cover -->
+    <div id="coverModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 backdrop-blur-sm p-4">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold">Sesuaikan Cover</h3>
+                <button type="button" onclick="closeCoverModal()" class="p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="space-y-4">
+                <input type="file" id="modalCoverFile" accept="image/*" class="w-full text-xs text-slate-500">
+                <input type="text" id="modalCoverTitle" placeholder="Judul Cover" class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 text-sm">
+                <button onclick="applyCoverCustomization()" class="w-full py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm">Terapkan Perubahan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Profile -->
+    <div id="profileModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/70 backdrop-blur-sm p-4">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6">
+            <div class="flex items-center justify-between">
+                <h3 id="profileModalTitle" class="text-lg font-bold">Edit Profil</h3>
+                <button type="button" onclick="closeProfileModal()" class="p-2"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form onsubmit="handleProfileSubmit(event)" class="space-y-4">
+                <input type="hidden" id="editProfileKey" value="">
+                <input type="text" id="modalProfileName" placeholder="Nama Lengkap" required class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 text-sm mb-2">
+                <input type="text" id="modalProfileRole" placeholder="Peran" required class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 text-sm mb-2">
+                <input type="file" id="modalProfileFile" accept="image/*" class="w-full mb-2 text-xs text-slate-500">
+                <textarea id="modalProfileBio" rows="3" required class="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 text-sm"></textarea>
+                <button type="submit" class="w-full py-3 rounded-xl bg-indigo-600 text-white font-semibold text-sm">Simpan Profil</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Box -->
+    <div id="notificationBox" class="fixed bottom-6 right-6 z-[70] transform translate-y-32 opacity-0 transition-all duration-300 max-w-sm w-full bg-slate-900 text-white border border-slate-700 p-4 rounded-2xl shadow-2xl flex items-center gap-3 pointer-events-none">
+        <div id="notifIcon" class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shrink-0"><i class="fa-solid fa-check"></i></div>
+        <div class="flex-1">
+            <h5 id="notifTitle" class="font-bold text-sm">Berhasil!</h5>
+            <p id="notifDesc" class="text-xs text-slate-300">Aksi Anda telah disimpan.</p>
+        </div>
+    </div>
+
+    <!-- Services & Skills Section -->
+        <section id="services" class="py-24 px-4 sm:px-6 lg:px-8 bg-slate-100/50 dark:bg-slate-900/30 transition-colors">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">Proses & Karya</h2>
+                    <p class="text-slate-600 dark:text-slate-400"> Hargai setiap <b>kemajuan</b> walaupun itu kecil, karena setiap pencapaian adalah bagian dari <b> perjalanan besar.</b> </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="glass-card rounded-3xl p-8 shadow-xl space-y-4 hover:-translate-y-1 transition-transform">
+                        <div class="w-14 h-14 rounded-2xl bg-indigo-600/10 dark:bg-indigo-400/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 text-2xl font-bold">
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </div>
+                        <h3 class="text-xl font-bold"> Drawing & Design</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Pembuatan gambar & design, high-fidelity UI design, interaktif prototipe, design digital.
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 shadow-xl space-y-4 hover:-translate-y-1 transition-transform">
+                        <div class="w-14 h-14 rounded-2xl bg-violet-600/10 dark:bg-violet-400/10 flex items-center justify-center text-violet-600 dark:text-violet-400 text-2xl font-bold">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Web Development</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Pengembangan web modern menggunakan HTML, CSS, JavaScript, dan optimasi performa Web yang optimal.
+                        </p>
+                    </div>
+
+                    <div class="glass-card rounded-3xl p-8 shadow-xl space-y-4 hover:-translate-y-1 transition-transform">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-600/10 dark:bg-blue-400/10 flex items-center justify-center text-blue-600 dark:text-blue-400 text-2xl font-bold">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">Music Performence</h3>
+                        <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+                            Permainan alat musik yang berfokus pada Guitar & Bass untuk Performence yang baik.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="text-center max-w-2xl mx-auto mb-12 space-y-4">
+                    <h2 class="text-3xl font-extrabold tracking-tight">Mari Berkolaborasi Bersama Kami</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm">Punya proyek impian atau butuh partner kreatif? Kirimkan pesan sekarang.</p>
+                </div>
+
+                <form onsubmit="handleContactSubmit(event)" class="space-y-6 max-w-2xl mx-auto">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Nama Lengkap</label>
+                            <input type="text" required placeholder="Rusdy Aulia" class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Email Aktif</label>
+                            <input type="email" required placeholder="Rusdy@example.com" class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-1">Pesan / Proyek</label>
+                        <textarea rows="4" required placeholder="Ceritakan detail proyek Anda..." class="w-full px-4 py-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="px-8 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 transition-all hover:scale-105">
+                            Kirim Pesan ke NexusDuo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+         <!-- Footer -->
+    <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">ND</div>
+                <span class="font-bold">NexusDuo Studio © 2026</span>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+                Dibangun dengan HTML5, Tailwind CSS, & JavaScript.
+            </p>
+            <div class="flex gap-4 text-slate-600 dark:text-slate-400">
+                <a href="#" class="hover:text-indigo-600 transition-colors"><i class="fa-brands fa-github text-lg"></i></a>
+                <a href="#" class="hover:text-indigo-600 transition-colors"><i class="fa-brands fa-twitter text-lg"></i></a>
+                <a href="#" class="hover:text-indigo-600 transition-colors"><i class="fa-brands fa-linkedin text-lg"></i></a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JAVASCRIPT SYSTEM (ANTI-ERROR & CLEAN) -->
+    <script src="./Jscript.js"></script>
+</body>
+</html>
